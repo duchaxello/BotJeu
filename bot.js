@@ -31,17 +31,28 @@ client.on('ready', () => {
 client.on('message', message => {
   if (!message.content.startsWith(config.prefix)) return;
 
-  const withoutPrefix = message.content.slice(config.prefix.length);
-  const split = withoutPrefix.split(/ +/);
-  const command = split[0];
-  const args = split.slice(1);
+  const args = message.content.slice(config.prefix.length).split(/ +/);
+  const commandName = args.shift().toLowerCase();
 
   /* Si c'est une commande inconnue, on sort de la fonction. */
-  if (!client.commands.has(command)) return;
+  if (!client.commands.has(commandName)) return;
+
+  const command = client.commands.get(commandName);
+
+  /* Si aucun argument n'est spécifié alors que la demande en a besoin,
+  on affiche un message à l'utilisateur et on mmet fin à l'exécution. */
+  if (command.args && !args.length) {
+    let reply = "``` " + lang.noArguments;
+    if (command.usage) {
+      reply += lang.properUsage + config.prefix + command.name + command.usage;
+    }
+    reply += " ```" ;
+    return message.reply(reply);
+  }
 
   /* Sinon on tente de l'exécuter. */
   try {
-    client.commands.get(command).execute(message, args, lang);
+    command.execute(message, args, lang);
   }
   catch (error) {
     console.error(error);

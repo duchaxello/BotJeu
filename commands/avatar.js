@@ -14,6 +14,8 @@ function getUserFromMention(mention) {
 module.exports = {
   name: 'avatar',
   description: 'Montre l\'avatar de la personne mentionnée, ou si pas de paramètre celle de l\'auteur du message',
+  /* args : définit la nécessité des arguments pour cette commande. */
+  args: false,
   execute(message, args, lang) {
     if (args[0]) {
       const user = getUserFromMention(args[0]);
