@@ -1,13 +1,33 @@
+const fs = require('fs');
 const Discord = require('discord.js');
 const { fr } = require('./textes.js');
 const config = require('./config.json');
 const client = new Discord.Client();
+client.commands = new Discord.Collection();
 
+/* Je ne sais pas si c'est une bonne pratique, mais j'en ai besoin pour
+récupérer les infos des utilisateurs depuis d'autres fichiers. */
+module.exports = { client };
+
+/* Choix de la langue, français par défaut. */
+const lang = fr;
+
+/* Importation de toutes les commandes. */
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+/* On les associe à notre client */
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  client.commands.set(command.name, command);
+}
+
+/* On affiche un message dans la console quand le bot est prêt. */
 client.on('ready', () => {
-    console.log(fr.ready);
+    console.log(lang.ready);
 });
 
 
+/* Gestion des messages. */
 client.on('message', message => {
   if (!message.content.startsWith(config.prefix)) return;
 
@@ -16,29 +36,17 @@ client.on('message', message => {
   const command = split[0];
   const args = split.slice(1);
 
-  if (command === 'avatar') {
-    if (args[0]) {
-      const user = getUserFromMention(args[0]);
-      if (!user) {
-        return message.reply('Please use a proper mention if you want to see someone else\'s avatar.');
-      }
+  /* Si c'est une commande inconnue, on sort de la fonction. */
+  if (!client.commands.has(command)) return;
 
-      return message.channel.send(`${user.username}'s avatar: ${user.displayAvatarURL}`);
-    }
-
-    return message.channel.send(`${message.author.username}, your avatar: ${message.author.displayAvatarURL}`);
-  } else if (command === 'test') {
-    if (args[0]) {
-      message.channel.send(fr.reply(message));
-    }
+  /* Sinon on tente de l'exécuter. */
+  try {
+    client.commands.get(command).execute(message, args, lang);
+  }
+  catch (error) {
+    console.error(error);
+    message.reply(lang.errorCommand);
   }
 });
-
-
-function getUserFromMention(mention) {
-  const matches = mention.match(/^<@!?(\d+)>$/);
-  const id = matches[1];
-  return client.users.get(id);
-}
 
 client.login(config.token);
