@@ -34,7 +34,7 @@ client.on('message', message => {
   const args = message.content.slice(config.prefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
 
-  /* Si c'est une commande inconnue, on sort de la fonction. */
+  /* Si c'est une commande inconnue, on l'ignore et sort de la fonction. */
   if (!client.commands.has(commandName)) return;
 
   const command = client.commands.get(commandName);
@@ -42,12 +42,14 @@ client.on('message', message => {
   /* Si aucun argument n'est spécifié alors que la demande en a besoin,
   on affiche un message à l'utilisateur et on mmet fin à l'exécution. */
   if (command.args && !args.length) {
-    let reply = "``` " + lang.noArguments;
+    let reply = lang.noArguments;
     if (command.usage) {
       reply += lang.properUsage + config.prefix + command.name + command.usage;
     }
-    reply += " ```" ;
-    return message.reply(reply);
+    return message.reply({ embed: {
+      color: 0xff0000,
+      description: reply
+    } });
   }
 
   /* Sinon on tente de l'exécuter. */
