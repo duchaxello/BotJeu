@@ -5,12 +5,16 @@ const config = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
-/* Je ne sais pas si c'est une bonne pratique, mais j'en ai besoin pour
-récupérer les infos des utilisateurs depuis d'autres fichiers. */
-module.exports = { client };
-
-/* Choix de la langue, français par défaut. */
+/* Choix de la langue, français par défaut.
+On pourrait mettre un choix dans la console ou la première fois
+qu'on lance le bot à l'aide de client.on('ready', ...). */
 const lang = fr;
+
+
+/* Je ne sais pas si c'est une bonne pratique, mais j'en ai besoin pour
+récupérer les infos des utilisateurs depuis d'autres fichiers. (Entre autres)*/
+module.exports = { client, lang };
+
 
 /* Importation de toutes les commandes. */
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -20,6 +24,7 @@ for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
 }
+
 
 /* On affiche un message dans la console quand le bot est prêt. */
 client.on('ready', () => {

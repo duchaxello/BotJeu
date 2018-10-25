@@ -1,4 +1,4 @@
-const jeuxDeDes = require('../jeuxDeDes.js');
+const jeuxDeDes = require('../functions/jeuxDeDes.js');
 
 module.exports = {
   name: 'jet',

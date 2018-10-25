@@ -1,7 +1,7 @@
 var fr = {};
 
 /* Commandes d'ordre général. */
-fr.ready = 'Je suis prêt, réveillons les gobelins de ce monde et conquérons le monde ensemble MOUHAHAHA ! ';
+fr.ready = 'Je suis prêt, réveillons les gobelins de ce monde et conquérons le monde ensemble MOUHAHAHA ! \n\n\n';
 
 /* Commande 'avatar' */
 fr.wrongMentionForAvatar = 'Je le connais pas lui.';
