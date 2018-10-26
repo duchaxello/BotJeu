@@ -4,6 +4,7 @@ const dbName = 'gobelin';
 const collecGods = 'gods';
 const collecCharacters = 'characters';
 const assert = require('assert');
+const jeuxDeDes = require('../functions/jeuxDeDes.js');
 
 let mongoClient = new Object();
 
@@ -40,4 +41,18 @@ const database = module.exports = {
       // });
     },
   },
+
+  characters: {
+    rollStats: function() {
+      let stats = {};
+
+      stats.for = jeuxDeDes.rollStatPathfinder();
+      stats.dex = jeuxDeDes.rollStatPathfinder();
+      stats.con = jeuxDeDes.rollStatPathfinder();
+      stats.sag = jeuxDeDes.rollStatPathfinder();
+      stats.cha = jeuxDeDes.rollStatPathfinder();
+
+      return stats;
+    }
+  }
 };

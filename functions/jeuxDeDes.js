@@ -9,10 +9,10 @@ module.exports = {
   lancerDes: function(content) {
     /* TODO : Vieille fonction à retapper... */
     let list = content.split("d");
-    var retour = "";
+    var output = "";
 
     if (list[0] === "" && Number.isInteger(parseInt(list[1]))) {
-      retour = this.getRandomInt(parseInt(list[1])) + "";
+      output = this.getRandomInt(parseInt(list[1])) + "";
 
     } else if (Number.isInteger(parseInt(list[0])) && Number.isInteger(parseInt(list[1]))) {
 
@@ -22,27 +22,26 @@ module.exports = {
       for (var i = 0; i < parseInt(list[0]); i++) {
         tmp = this.getRandomInt(parseInt(list[1]));
         total += tmp;
-        retour += tmp + ", ";
+        output += tmp + ", ";
       }
-      retour += "--> " + total;
+      output += "--> " + total;
 
     } else {
       throw "ERROR during the command 'jet' : Wrong parameters";
     }
 
-    return retour;
+    return output;
   },
 
-  lancerStatPathfinder() {
-    /* Pour roll les stats on lance 4d6 et on enlève le minimum tiré. */
-    var nbDés = 4;
-    var tailleDés = 6;
+  rollStatPathfinder() {
+    var nbDices = 4;
+    var sizeDice = 6;
     var total = 0;
     var tmp = 0;
     var min = 6;
 
-    for (var i = 0; i < nbDés; i++) {
-      tmp = this.getRandomInt(parseInt(tailleDés));
+    for (var i = 0; i < nbDices; i++) {
+      tmp = this.getRandomInt(parseInt(sizeDice));
       total += tmp;
       if (min > tmp) {
         min = tmp;

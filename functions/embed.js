@@ -1,4 +1,4 @@
-const colorCharacter = 3447003;
+const colorCharacter = 0x2f8905;
 const colorGod = 0xc90000;
 
 module.exports = {
