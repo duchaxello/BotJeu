@@ -5,6 +5,8 @@ const config = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
+const database = require('./functions/db.js');
+
 /* Choix de la langue, français par défaut.
 On pourrait mettre un choix dans la console ou la première fois
 qu'on lance le bot à l'aide de client.on('ready', ...). */
@@ -28,7 +30,13 @@ for (const file of commandFiles) {
 
 /* On affiche un message dans la console quand le bot est prêt. */
 client.on('ready', () => {
-    console.log(lang.ready);
+  database.gods.findOne({name:'Maglubiyet le Puissant'}).then((response => {
+    if (response == null) {
+      database.gods.addMaglubiyet();
+    }
+  }))
+
+  console.log(lang.ready);
 });
 
 

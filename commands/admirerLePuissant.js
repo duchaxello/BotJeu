@@ -5,9 +5,9 @@ module.exports = {
   name: 'admire',
   description: 'Montre les stats de Maglubiyet Le Puissant',
   args: false,
-  usage: ' <nombre de dés>d<taille des dés à lancer>',
+  usage: '',
   async execute(message, args, lang) {
-    database.gods.addMaglubiyet();
+    // database.gods.addMaglubiyet();
     // const maglubiyet = await (database.gods.findOne({}));
     // console.log('Maglubiyet ---> ', maglubiyet);
     database.gods.findOne({})
