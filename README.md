@@ -10,3 +10,11 @@ Le thème est un univers médiéval fantastique, plus particulièrement les gobe
 cf https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04
 Lancer la commande `mongod --dbpath my/path/to/botJeu/database/`
 de lancer le bot avec `npm start`
+
+
+
+
+Il faut installer :
+- tiny_request (`npm install --save tiny_request`),
+- mongodb (`npm install --save mongodb`)
+- cheerio (`npm install --save cheerio`).
