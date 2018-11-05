@@ -15,6 +15,8 @@ fr.welcomeOtherMember = function(user) {
 }
 fr.welcomeEveryone = ' Bienvenue à tous dans la grotte de la Crasse Oubliée !';
 
+/* Commande 'admire' */
+fr.wrongMentionForAdmiration = "Ce misérable ne mérite aucune admiration.";
 
 /* Textes pour la création de personnages */
 fr.chooseToCreateCharacter = 'Je vois que tu veux te réincarner, bien bien bien.' +

@@ -35,10 +35,6 @@ const database = module.exports = {
       .catch((err) => {
         throw err;
       });
-      // .then((cursor) => {
-      //   console.log(cursor);
-      //   return cursor.toArray();
-      // });
     },
   },
 
@@ -53,6 +49,15 @@ const database = module.exports = {
       stats.cha = jeuxDeDes.rollStatPathfinder();
 
       return stats;
+    },
+    addCharacter: function(character) {
+      mongoClient.db(dbName).collection(collecCharacters).insertOne(character);
+    },
+    getCharacterByUserId(userId) {
+      return mongoClient.db(dbName).collection(collecCharacters).findOne({ userId: userId });
+    },
+    deleteCharacterByUserId(userId) {
+      mongoClient.db(dbName).collection(collecCharacters).remove({ userId: userId });
     }
   }
 };
