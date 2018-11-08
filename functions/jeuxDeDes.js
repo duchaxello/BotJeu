@@ -78,28 +78,43 @@ module.exports = {
   getRandomGoblinName() {
     let name;
 
-    let rnd2 = Math.floor(Math.random() * nm2.length);
-    let rnd2b = Math.floor(Math.random() * nm2.length);
+    const rnd2 = Math.floor(Math.random() * nm2.length);
+    const rnd2b = Math.floor(Math.random() * nm2.length);
     if (this.getRandomInt(2) === 1) {
-      let rnd5 = Math.floor(Math.random() * nm5.length);
-      let rnd7 = Math.floor(Math.random() * nm7.length);
-      let rnd8 = Math.floor(Math.random() * nm8.length);
+      console.log("1");
+      const rnd5 = Math.floor(Math.random() * nm5.length);
+      const rnd7 = Math.floor(Math.random() * nm7.length);
+      const rnd8 = Math.floor(Math.random() * nm8.length);
       if(this.getRandomInt(10) < 5) {
+      console.log("2");
         name = nm5[rnd5] + nm2[rnd2] + nm7[rnd7] + nm8[rnd8];
       } else {
-        rnd6 = Math.floor(Math.random() * nm6.length);
+        console.log("3");
+        const rnd6 = Math.floor(Math.random() * nm6.length);
         name = nm5[rnd5] + nm2[rnd2] + nm6[rnd6] + nm2[rnd2b] + nm7[rnd7] + nm8[rnd8];
       }
     } else {
-      rnd5 = Math.floor(Math.random() * nm1.length);
-      rnd7 = Math.floor(Math.random() * nm4.length);
+      console.log("4");
+      const rnd5 = Math.floor(Math.random() * nm1.length);
+      const rnd7 = Math.floor(Math.random() * nm4.length);
       if (this.getRandomInt(10) < 5) {
+        console.log("5");
         name = nm1[rnd5] + nm2[rnd2] + nm4[rnd7];
       } else {
-        rnd3 = Math.floor(Math.random() * nm3.length);
+        console.log("6");
+        const rnd3 = Math.floor(Math.random() * nm3.length);
         name = nm1[rnd5] + nm2[rnd2] + nm3[rnd3] + nm2[rnd2b] + nm4[rnd7];
       }
     }
-    return name.charAt(0).toUpperCase() + name.slice(1);;
+    return name.charAt(0).toUpperCase() + name.slice(1);
   },
+
+  hit() {
+    return this.getRandomInt(20);
+  },
+
+  damage(characters) {
+    return this.getRandomInt(4) + Math.floor((characters.stats.for - 10) / 2);
+  }
+
 };
