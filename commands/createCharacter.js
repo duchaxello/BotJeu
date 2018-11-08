@@ -21,7 +21,7 @@ module.exports = {
         if (message.content == 'haha') {
           message.reply(lang.chosenToCreate);
           database.characters.deleteCharacterByUserId(message.author.id);
-          this.createCharacter(message);
+          message.reply(embed.character(this.createCharacter(message)));
         } else {
           message.reply(lang.chosenNotToCreate);
         }
@@ -36,8 +36,9 @@ module.exports = {
     charac.userId = message.author.id;
     charac.stats = database.characters.rollStats();
     charac.name = hasard.getRandomGoblinName();
-    charac.pv = 1;
-    message.reply(embed.character(charac));
+    charac.hpMax = Math.floor(10 + (charac.stats.con - 10) / 2);
+    charac.hpLeft = Math.floor(10 + (charac.stats.con - 10) / 2);
     database.characters.addCharacter(charac);
+    return charac;
   }
 };

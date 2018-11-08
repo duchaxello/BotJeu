@@ -57,7 +57,7 @@ const database = module.exports = {
       return mongoClient.db(dbName).collection(collecCharacters).findOne({ userId: userId });
     },
     deleteCharacterByUserId(userId) {
-      mongoClient.db(dbName).collection(collecCharacters).remove({ userId: userId });
+      mongoClient.db(dbName).collection(collecCharacters).deleteOne({ userId: userId });
     }
   }
 };

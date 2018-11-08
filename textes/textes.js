@@ -30,10 +30,20 @@ fr.chosenToCreate = 'Bon c\'est parti.';
 fr.chosenNotToCreate = 'C\'est certainement plus sage, mais la prochaine fois ne me fais pas perdre mon temps.';
 
 
+/* Attaques */
+fr.atkOnNobody = 'Apparemment certains aiment taper dans le vide.\n' +
+  'Sachez que ça ne sert à rien bande d\'ahuris.';
+fr.errAccessingCombattants = 'Attendez, je me souviens plus de vous.';
+fr.crit = function(characters) {
+  return 'BOUM, ' + characters[0].name + ' a crit ' + characters[1].name + '.'
+}
+
+
 /* Commandes générales */
 fr.noArguments = 'Il faut donner des arguments quand on fait une requête de ce genre. ';
 fr.properUsage = '\nCette commande doit être lancée selon le schéma : \n';
 fr.errorCommand = 'Ah je crois que j\'ai raté cette commande, il doit y avoir une erreur... ';
+fr.errorDisplayCharacter = 'Je trouve pas le personnage.';
 
 fr.reply = function({ author } = { author: { username: 'mécréant' } }) {
   return 'Tu te prends pour qui ' + author.username + ' ?';

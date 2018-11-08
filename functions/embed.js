@@ -13,7 +13,7 @@ module.exports = {
         fields: [
           {
              name: 'PV',
-             value: object.pv,
+             value: object.hpLeft + '/' + object.hpMax,
           },
           {
             name: 'Stats',
