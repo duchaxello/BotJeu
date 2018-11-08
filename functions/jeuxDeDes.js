@@ -81,27 +81,21 @@ module.exports = {
     const rnd2 = Math.floor(Math.random() * nm2.length);
     const rnd2b = Math.floor(Math.random() * nm2.length);
     if (this.getRandomInt(2) === 1) {
-      console.log("1");
       const rnd5 = Math.floor(Math.random() * nm5.length);
       const rnd7 = Math.floor(Math.random() * nm7.length);
       const rnd8 = Math.floor(Math.random() * nm8.length);
       if(this.getRandomInt(10) < 5) {
-      console.log("2");
         name = nm5[rnd5] + nm2[rnd2] + nm7[rnd7] + nm8[rnd8];
       } else {
-        console.log("3");
         const rnd6 = Math.floor(Math.random() * nm6.length);
         name = nm5[rnd5] + nm2[rnd2] + nm6[rnd6] + nm2[rnd2b] + nm7[rnd7] + nm8[rnd8];
       }
     } else {
-      console.log("4");
       const rnd5 = Math.floor(Math.random() * nm1.length);
       const rnd7 = Math.floor(Math.random() * nm4.length);
       if (this.getRandomInt(10) < 5) {
-        console.log("5");
         name = nm1[rnd5] + nm2[rnd2] + nm4[rnd7];
       } else {
-        console.log("6");
         const rnd3 = Math.floor(Math.random() * nm3.length);
         name = nm1[rnd5] + nm2[rnd2] + nm3[rnd3] + nm2[rnd2b] + nm4[rnd7];
       }
